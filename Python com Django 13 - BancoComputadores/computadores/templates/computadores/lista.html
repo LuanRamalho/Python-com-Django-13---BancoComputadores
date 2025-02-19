@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Computadores</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <form method="GET">
+    <input type="text" name="q" placeholder="Buscar computadores..." value="{{ query|default:'' }}">
+    <button type="submit">Buscar</button>
+    </form>
+    <table>
+        <tr>
+            <th>Fabricante</th>
+            <th>Processador</th>
+            <th>Núcleo</th>
+            <th>Memória RAM</th>
+            <th>HD/SSD</th>
+            <th>Placa de Vídeo</th>
+            <th>Ações</th>
+        </tr>
+        {% for computador in computadores %}
+        <tr>
+            <td>{{ computador.fabricante }}</td>
+            <td>{{ computador.processador }}</td>
+            <td>{{ computador.nucleos }}</td>
+            <td>{{ computador.memoria_ram }}</td>
+            <td>{{ computador.armazenamento }}</td>
+            <td>{{ computador.placa_video }}</td>
+            <td>
+                <a href="{% url 'editar_computador' computador.id %}">Editar</a> |
+                <a href="{% url 'excluir_computador' computador.id %}">Excluir</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="7">Nenhum computador encontrado.</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excluir Computador</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <h1>Excluir Computador</h1>
+    <p>Tem certeza que deseja excluir <strong>{{ computador.fabricante }} - {{ computador.processador }}</strong>?</p>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Confirmar Exclusão</button>
+    </form>
+    <a href="{% url 'lista_computadores' %}">Cancelar</a>
+</body>
+</html>
